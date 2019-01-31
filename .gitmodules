@@ -1,0 +1,3 @@
+[submodule "external/atomic-system-containers"]
+	path = external/atomic-system-containers
+	url = https://github.com/korczis/atomic-system-containers
