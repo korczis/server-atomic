@@ -7,6 +7,6 @@ SSH_KEY_PATH=/root/.ssh/id_rsa
 sysctl -w dev.raid.speed_limit_max=1000
 
 # Generate key if not exists
-if [ ! -f ${SSH_KEY_PATH} ]; then
-    ssh-keygen -N "" -f ${SSH_KEY_PATH} -t rsa -b 4096
+if [[ ! -f $SSH_KEY_PATH ]]; then
+    ssh-keygen -N "" -f $SSH_KEY_PATH -t rsa -b 4096
 fi
