@@ -1,0 +1,26 @@
+---
+
+#- name: Install kubernetes-master
+#  command: "rpm-ostree install kubernetes-master"
+#  register: result
+#  ignore_errors: yes
+#
+#- name: Install kubernetes-node
+#  command: "rpm-ostree install kubernetes-node"
+#  register: result
+#  ignore_errors: yes
+#
+#- name: Install kubernetes-client
+#  command: "rpm-ostree install kubernetes-client"
+#  register: result
+#  ignore_errors: yes
+#
+#- name: Install kubernetes
+#  command: "rpm-ostree install kubernetes"
+#  register: result
+#  ignore_errors: yes
+#
+#- name: Install flannel
+#  command: "rpm-ostree install flannel"
+#  register: result
+#  ignore_errors: yes

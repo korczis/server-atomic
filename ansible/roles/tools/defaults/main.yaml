@@ -1,0 +1,9 @@
+---
+
+default_packages:
+  - dnf
+  - git
+  - mosh
+  - htop
+  - mc
+  - vim

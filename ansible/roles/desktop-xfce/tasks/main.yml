@@ -1,0 +1,7 @@
+---
+
+- name: install xfce_packages packages
+  command: "rpm-ostree install --idempotent {{ xfce_packages | join(' ') }}"
+
+- name: set graphical.target as default
+  command: "systemctl set-default graphical.target"

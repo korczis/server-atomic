@@ -1,0 +1,48 @@
+---
+
+- name: lower raid sync priority
+  command: "sysctl -w dev.raid.speed_limit_max=1000"
+
+- name: create /etc/sysctl.conf
+  template:
+    src: etc/sysctl.conf
+    dest: /etc/sysctl.conf
+    owner: root
+    group: root
+    mode: 0644
+
+- name: create /etc/sysctl.d/00-sysctl.conf
+  template:
+    src: etc/sysctl.d/00-sysctl.conf
+    dest: /etc/sysctl.d/00-sysctl.conf
+    owner: root
+    group: root
+    mode: 0644
+
+- name: create /etc/sysctl.d/99-sysctl.conf
+  template:
+    src: etc/sysctl.d/99-sysctl.conf
+    dest: /etc/sysctl.d/99-sysctl.conf
+    owner: root
+    group: root
+    mode: 0644
+
+- name: upgrade atomic host
+  atomic_host:
+    revision: latest
+  register: result
+
+- name: reboot after upgrade of atomic host
+  reboot:
+  register: result
+  when: result is succeeded
+
+- name: rebase to {{ atomic_channel }}
+  command: rpm-ostree rebase -b {{ atomic_channel }}
+  register: result
+  ignore_errors: yes
+
+- name: reboot after rebase to {{ atomic_channel }}
+  reboot:
+  register: result
+  when: result is succeeded

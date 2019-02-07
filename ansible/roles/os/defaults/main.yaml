@@ -1,0 +1,7 @@
+---
+
+# fedora/29/x86_64/atomic-host
+# fedora/29/x86_64/testing/atomic-host
+# fedora/29/x86_64/updates/atomic-host
+
+atomic_channel: "fedora/29/x86_64/updates/atomic-host"

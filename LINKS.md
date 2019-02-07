@@ -1,0 +1,3 @@
+- https://www.projectatomic.io/docs/kubernetes/
+- https://www.projectatomic.io/blog/2015/05/building-and-running-live-atomic/
+- https://opensource.com/article/18/5/10-tasks-running-containers-atomic-hosts

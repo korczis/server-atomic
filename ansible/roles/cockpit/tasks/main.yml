@@ -1,0 +1,54 @@
+#---
+
+- name: install cockpit
+  command: rpm-ostree install --idempotent cockpit
+
+- name: update systemd deaemon
+  command: systemctl daemon-reload
+
+- name: update systemd deaemon
+  command: systemctl enable --now ws
+
+# systemctl enable ws
+#- name: install cockpit
+#  atomic_container:
+#    name: cockpit
+#    image: cockpit/ws
+#    backend: ostree
+
+#- name: Install cockpit
+#  command: "rpm-ostree install cockpit"
+#  register: result
+#  ignore_errors: yes
+
+#- name: install cockpit
+#  - command: rpm-ostree install --system cockpit
+
+#- name: Reload unit files
+#  command: systemctl daemon-reload
+
+#- name: Open cockpit ports
+#  firewalld: port=9090/tcp zone=public permanent=true state=enabled immediate=yes
+
+#- name: Enable and start cockpit
+#  systemd:
+#    daemon_reload: yes
+#    name: cockpit
+#    enabled: yes
+#    state: restarted
+
+#- name: Reboot after cockpit install
+#  reboot:
+#  # when: result is succeeded
+#
+#- name: Enable cockpit
+#  command: "systemctl enable cockpit.socket"
+#
+#- name: Start cockpit
+#  command: "systemctl start cockpit.socket"
+#
+#- name: open firewall port
+#  command: "firewall-cmd --zone=public --add-port=9090/tcp --permanent"
+#
+#- name: reload firewall rules
+#  command: "firewall-cmd --reload"

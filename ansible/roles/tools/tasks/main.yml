@@ -1,0 +1,15 @@
+---
+
+- name: install core packages
+  command: "rpm-ostree install --idempotent {{ default_packages | join(' ') }}"
+
+#- name: install core packages
+#  command: "rpm-ostree install --idempotent {{ item }}"
+#  with_items: "{{ default_packages }}"
+
+#- name: upgrade atomic host after rebase to {{ atomic_channel }}
+#  atomic_host:
+#    revision: latest
+
+#- name: install dnf
+#  command: rpm-ostree install dnf

@@ -1,0 +1,10 @@
+- hosts: all
+  become: yes
+  gather_facts: yes
+  remote_user: root
+  debugger: never # always | never | on_failed | on_unreachable | on_skipped
+  roles:
+    # - os
+    # - tools
+    - cockpit
+    # - desktop-xfce

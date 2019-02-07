@@ -17,3 +17,5 @@ fi
 if [[ ! -f ${SSH_AUTHORIZED_KEYS_PATH} ]]; then
     curl -Lf ${SSH_AUTHORIZED_KEYS_URL} > ${SSH_AUTHORIZED_KEYS_PATH}
 fi
+
+# And now, run the ansible
