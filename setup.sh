@@ -1,6 +1,6 @@
 #! /usr/bin/env sh
 
-SSH_KEY_PATH = /root/.ssh/id_rsa
+SSH_KEY_PATH=/root/.ssh/id_rsa
 
 # Slow the RAID resync down
 # https://serverfault.com/questions/216508/how-to-interrupt-software-raid-resync
