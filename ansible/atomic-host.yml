@@ -4,7 +4,12 @@
   remote_user: root
   debugger: never # always | never | on_failed | on_unreachable | on_skipped
   roles:
+    - core
     # - os
-    # - tools
-    - cockpit
-    # - desktop-xfce
+    - docker
+    - tools
+    # - cockpit
+    # - desktop-kde
+    - desktop-xfce
+    # - skopeo
+    - users

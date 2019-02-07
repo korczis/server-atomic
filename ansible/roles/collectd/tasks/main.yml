@@ -1,0 +1,6 @@
+---
+
+#- name: Install collectd
+#  command: "rpm-ostree install collectd collectd-lvm rrdtool rrdtool-devel"
+#  register: result
+#  ignore_errors: yes

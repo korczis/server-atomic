@@ -1,0 +1,5 @@
+---
+
+#- name: install etcd
+#  command: "atomic install --system --name=etcd registry.fedoraproject.org/29/etcd:latest"
+#  register: result

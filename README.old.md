@@ -8,28 +8,6 @@ Server powered by Project Atomic
 
 ## Getting started
 
-
-**Install git**
-
-```
-# Add git to base image
-$ rpm-ostree pkg-add git
-
-# Reboot to new image
-$ systemctl reboot
-```
-
-**Get automation scripts**
-
-```
-# Clone this repository
-$ git clone https://github.com/korczis/server-atomic.git
-
-# Change directory
-$ cd server-atomic
-```
-
-
 **Install cockpit**
 
 ```
@@ -46,24 +24,9 @@ $ atomic run cockpit/ws
 $ firewall-cmd --zone=public --add-port=9090/tcp --permanent
 
 # Reload firewall rules
-    $ firewall-cmd --reload
+$ firewall-cmd --reload
 
 # Reboot
-$ systemctl reboot
-```
-
-**Install Ansible**
-
-```
-# Add epel repository
-$ rpm-ostree pkg-add epel-release
-
-# Reboot
-$ systemctl reboot
-
-# Add ansible package
-$ rpm-ostree pkg-add ansible
-
 $ systemctl reboot
 ```
 

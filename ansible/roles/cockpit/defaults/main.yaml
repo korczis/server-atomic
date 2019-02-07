@@ -1,0 +1,11 @@
+---
+
+cockpit_packages:
+  - cockpit
+  # - cockpit-docker
+  - cockpit-kdump
+  - cockpit-kubernetes
+  - cockpit-machines-ovirt
+  - cockpit-selinux
+  - cockpit-storaged
+  # - cockpit-system

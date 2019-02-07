@@ -1,0 +1,4 @@
+---
+
+- name: install skopeo
+  command: "rpm-ostree install --idempotent skopeo"

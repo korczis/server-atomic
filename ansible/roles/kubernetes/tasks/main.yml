@@ -24,3 +24,9 @@
 #  command: "rpm-ostree install flannel"
 #  register: result
 #  ignore_errors: yes
+
+#- name: Install kubeadm
+#  command: "atomic install --system --name kubelet docker.io/jasonbrooks/kubeadm"
+#  register: result
+#  ignore_errors: yes
+

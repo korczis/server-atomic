@@ -1,0 +1,8 @@
+---
+
+#- name: Copy sources
+#  synchronize:
+#    src: ./../../../../
+#    dest: /root/server-atomic
+#    recursive: true
+#    delete: false

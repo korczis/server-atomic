@@ -1,6 +1,6 @@
 ---
 
-default_packages:
+tool_packages:
   - dnf
   - git
   - mosh

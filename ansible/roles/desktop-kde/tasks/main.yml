@@ -1,0 +1,6 @@
+---
+
+# ostree remote add atomic-plasma https://schluentz.de/atomic-plasma --gpg-import /path/to/keyfile
+
+#- name: install kde_packages packages
+#  command: "rpm-ostree install --idempotent {{ kde_packages | join(' ') }}"
