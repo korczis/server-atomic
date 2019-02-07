@@ -6,8 +6,6 @@ SSH_KEY_PATH = /root/.ssh/id_rsa
 # https://serverfault.com/questions/216508/how-to-interrupt-software-raid-resync
 sysctl -w dev.raid.speed_limit_max=1000
 
-rm -rf $SSH_KEY_PATH
-
 # Generate key if not exists
 if [[ ! -f $SSH_KEY_PATH ]]; then
     ssh-keygen -y -N "" -f $SSH_KEY_PATH -t rsa -b 4096
