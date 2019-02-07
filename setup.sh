@@ -15,5 +15,5 @@ fi
 
 # Create authorized_keys if not exists
 if [[ ! -f ${SSH_AUTHORIZED_KEYS_PATH} ]]; then
-    curl ${SSH_AUTHORIZED_KEYS_URL}
+    curl -Lf ${SSH_AUTHORIZED_KEYS_URL} > ${SSH_AUTHORIZED_KEYS_PATH}
 fi
