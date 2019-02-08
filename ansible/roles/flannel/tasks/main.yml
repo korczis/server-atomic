@@ -1,0 +1,11 @@
+---
+
+- name: install flanneld
+  command: "atomic install --system --system-package=no --name flanneld registry.fedoraproject.org/latest/flannel"
+  register: result
+
+- name: reload systemd daemon
+  command: "systemctl daemon-reload"
+
+- name: enable flanneld
+  command: "systemctl enable --now flanneld"
