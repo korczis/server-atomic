@@ -1,4 +1,7 @@
 ---
 
 - name: install kubernetes master
-  command: echo "install kubernetes master"
+  command: rpm-ostree install --idempotent kubernetes-master
+
+- name: reload systemd daemon
+  command: "systemctl daemon-reload"

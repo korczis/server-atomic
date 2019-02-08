@@ -11,5 +11,35 @@
 # [fedora@atomic-master ~]$ MASTER_IP=192.168.122.10
 # [fedora@atomic-master ~]$ ./easyrsa --batch "--req-cn=${MASTER_IP}@`date +%s`" build-ca nopass
 
-
 # [fedora@atomic-master ~]$ ./easyrsa --subject-alt-name="IP:${MASTER_IP}" build-server-full server nopass
+
+
+- name: download easy-rsa.tar.gz
+  get_url:
+    url: https://storage.googleapis.com/kubernetes-release/easy-rsa/easy-rsa.tar.gz
+    dest: ./easy-rsa.tar.gz
+    mode: 0440
+
+- name: extract easy-rsa.tar.gz into ./easy-rsa
+  unarchive:
+    remote_src: true
+    src: ./easy-rsa.tar.gz
+    dest: ./
+
+- name: init-pki
+  command: "./easyrsa init-pki"
+  args:
+    chdir: ./easy-rsa-master/easyrsa3/
+    creates: /root/easy-rsa-master/easyrsa3/pki
+
+- name: build-ca
+  command: './easyrsa --batch "--req-cn=127.0.0.1@`date +%s`" build-ca nopass'
+  args:
+    chdir: ./easy-rsa-master/easyrsa3/
+    creates: /root/easy-rsa-master/easyrsa3/pki/private/ca.key
+
+- name: build-server-full
+  command: './easyrsa --subject-alt-name="IP:127.0.0.1" build-server-full server nopass'
+  args:
+    chdir: ./easy-rsa-master/easyrsa3/
+    creates: /root/easy-rsa-master/easyrsa3/pki/reqs/server.req

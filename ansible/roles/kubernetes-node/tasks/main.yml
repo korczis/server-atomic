@@ -1,4 +1,8 @@
 ---
 
 - name: install kubernetes node
-  command: echo "install kubernetes node"
+  command: rpm-ostree install --idempotent kubernetes-node
+
+- name: reload systemd daemon
+  command: "systemctl daemon-reload"
+

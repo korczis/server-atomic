@@ -14,10 +14,10 @@
     # - etcd
     - flannel
     # -----
-    # - kubernetes-core
-    # - kubernetes-client
-    # - kubernetes-master
-    # - kubernetes-node
+    - kubernetes-core
+    - kubernetes-client
+    - kubernetes-master
+    - kubernetes-node
     # -----
     # - desktop-gnome3
     # - desktop-kde
