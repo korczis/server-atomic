@@ -1,5 +1,24 @@
 ---
 
-#- name: install etcd
-#  command: "atomic install --system --name=etcd registry.fedoraproject.org/29/etcd:latest"
-#  register: result
+- name: install etcd
+  command: "atomic install --system --system-package=no --storage=ostree --name=etcd registry.fedoraproject.org/latest/etcd"
+  register: result
+
+- name: reload systemd daemon
+  command: "systemctl daemon-reload"
+  register: result
+
+- name: copy etcd.conf
+  template:
+    src: etcd.conf
+    dest: /etc/etcd/etcd.conf
+    owner: root
+    group: root
+    mode: 0644
+
+- name: enable etcd
+  command: "systemctl enable etcd"
+
+- name: start etcd
+  command: "systemctl start etcd"
+
