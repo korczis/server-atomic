@@ -1,0 +1,4 @@
+---
+
+- name: install kubernetes master
+  command: echo "install kubernetes master"

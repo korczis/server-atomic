@@ -4,12 +4,23 @@
   remote_user: root
   debugger: never # always | never | on_failed | on_unreachable | on_skipped
   roles:
-    - core
+    # - core
     # - os
-    - docker
-    - tools
     # - cockpit
+    # - tools
+    # - persistence
+    # - docker
+    # - docker-registry
+    # - etcd
+    - flannel
+    # -----
+    # - kubernetes-core
+    # - kubernetes-client
+    # - kubernetes-master
+    # - kubernetes-node
+    # -----
+    # - desktop-gnome3
     # - desktop-kde
-    - desktop-xfce
-    # - skopeo
-    - users
+    # - desktop-xfce
+    # -----
+    # - users

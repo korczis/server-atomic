@@ -1,5 +1,6 @@
 [all]
-server
+# server
+192.168.88.67
 
 [webservers]
 # foo.example.com

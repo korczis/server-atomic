@@ -4,6 +4,28 @@
   command: "atomic install --system --system-package=no --name flanneld registry.fedoraproject.org/latest/flannel"
   register: result
 
+- name: create /etc/flanneld/flanneld.conf
+  template:
+    src: etc/flanneld/flanneld-conf.json.j2
+    dest: /etc/flanneld/flanneld.conf # /etc/flanneld/flanneld-conf.json
+    owner: root
+    group: root
+    mode: 0644
+
+- name: create /etc/sysconfig/flanneld
+  template:
+    src: etc/sysconfig/flanneld.j2
+    dest: /etc/sysconfig/flanneld
+    owner: root
+    group: root
+    mode: 0644
+
+- name: import flannel configuration into etcd
+  command: "curl -L http://localhost:2379/v2/keys/atomic.io/network/config -XPUT --data-urlencode value@/etc/flanneld/flanneld.conf"
+
+- name: read back flannel configuration
+  command: "curl -L http://localhost:2379/v2/keys/atomic.io/network/config"
+
 - name: reload systemd daemon
   command: "systemctl daemon-reload"
 

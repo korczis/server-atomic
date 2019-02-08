@@ -1,0 +1,4 @@
+---
+
+- name: install kubernetes node
+  command: echo "install kubernetes node"

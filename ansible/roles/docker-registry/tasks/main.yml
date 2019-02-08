@@ -1,1 +1,36 @@
 ---
+
+- name: create data directory for docker registry
+  file:
+    path: /var/lib/local-registry
+    state: directory
+    owner: root
+    group: docker
+    mode: 0775
+    recurse: yes
+
+- name: fix docker registry selinux rights
+  command: "chcon -Rvt svirt_sandbox_file_t /var/lib/local-registry"
+
+- name: setup local docker registry
+  docker_container:
+    name: local-registry
+    image: registry:2
+    state: started
+    pull: yes
+    restart_policy: always
+    volumes:
+      - "/var/lib/local-registry:/var/lib/registry:Z"
+    ports:
+      - "5000:5000"
+    env:
+      REGISTRY_STORAGE_FILESYSTEM_ROOTDIRECTORY: "/var/lib/registry"
+      REGISTRY_PROXY_REMOTEURL: "https://registry-1.docker.io"
+
+- name: use local docker registry
+  template:
+    src: etc/sysconfig/docker.j2
+    dest: /etc/sysconfig/docker
+    owner: root
+    group: root
+    mode: 0644

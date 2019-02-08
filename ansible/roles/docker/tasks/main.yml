@@ -18,3 +18,4 @@
     owner: root
     group: docker
     mode: 0775
+    recurse: yes

@@ -1,0 +1,15 @@
+---
+
+- name: install kubernetes core
+  command: echo "install kubernetes core"
+
+# [fedora@atomic-master ~]$ curl -L -O https://storage.googleapis.com/kubernetes-release/easy-rsa/easy-rsa.tar.gz
+# [fedora@atomic-master ~]$ tar xzf easy-rsa.tar.gz
+# [fedora@atomic-master ~]$ cd easy-rsa-master/easyrsa3
+# [fedora@atomic-master ~]$ ./easyrsa init-pki
+
+# [fedora@atomic-master ~]$ MASTER_IP=192.168.122.10
+# [fedora@atomic-master ~]$ ./easyrsa --batch "--req-cn=${MASTER_IP}@`date +%s`" build-ca nopass
+
+
+# [fedora@atomic-master ~]$ ./easyrsa --subject-alt-name="IP:${MASTER_IP}" build-server-full server nopass
