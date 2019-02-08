@@ -1,0 +1,5 @@
+---
+
+# tuned tuned-profiles-atomic tuned-profiles-realtime tuned-utils tuned-profiles-cpu-partitioning
+- name: install gnome3_packages packages
+  command: "rpm-ostree install --idempotent {{ gnome3_packages | join(' ') }}"
