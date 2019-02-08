@@ -46,3 +46,4 @@ galaxy_info:
 
 dependencies:
   - etcd
+  - flannel

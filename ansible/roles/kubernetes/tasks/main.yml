@@ -1,5 +1,55 @@
 ---
 
+# See https://www.projectatomic.io/blog/2017/11/migrating-kubernetes-on-fedora-atomic-host-27/
+
+
+# ---
+
+- name: install kubernetes-apiserver
+  command: "atomic install --system --system-package=no --name kube-apiserver registry.fedoraproject.org/latest/kubernetes-apiserver"
+  register: result
+
+- name: install kube-controller-manager
+  command: "atomic install --system --system-package=no --name kube-controller-manager registry.fedoraproject.org/latest/kubernetes-controller-manager"
+  register: result
+
+- name: install kube-scheduler
+  command: "atomic install --system --system-package=no --name kube-scheduler registry.fedoraproject.org/latest/kubernetes-scheduler"
+  register: result
+
+- name: reload systemd daemon
+  command: "systemctl daemon-reload"
+
+- name: enable kube-apiserver
+  command: "systemctl enable --now kube-apiserver"
+
+- name: enable kube-controller-manager
+  command: "systemctl enable --now kube-controller-manager"
+
+- name: enable kube-scheduler
+  command: "systemctl enable --now kube-scheduler"
+
+# ---
+
+- name: install kubelet
+  command: "atomic install --system --system-package=no --name kubelet registry.fedoraproject.org/latest/kubernetes-kubelet"
+  register: result
+
+- name: install kube-proxy
+  command: "atomic install --system --system-package=no --name kube-proxy registry.fedoraproject.org/latest/kubernetes-proxy"
+  register: result
+
+- name: reload systemd daemon
+  command: "systemctl daemon-reload"
+
+- name: enable kubelet
+  command: "systemctl enable --now kubelet"
+
+- name: enable kube-proxy
+  command: "systemctl enable --now kube-proxy"
+
+# ---
+
 #- name: Install kubernetes-master
 #  command: "rpm-ostree install kubernetes-master"
 #  register: result
