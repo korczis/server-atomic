@@ -10,3 +10,11 @@
     path: /var/run/docker.sock
     owner: root
     group: docker
+
+- name: create data directory for docker
+  file:
+    path: /var/lib/data
+    state: directory
+    owner: root
+    group: docker
+    mode: 0775
