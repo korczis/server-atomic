@@ -1,0 +1,21 @@
+---
+
+- name: install cadvisor
+  docker_container:
+    name: cadvisor
+    image: google/cadvisor:latest
+    state: started
+    pull: yes
+    detach: true
+    restart: true
+    restart_policy: always
+    privileged: true
+    user: "root:root"
+    volumes:
+      - "/:/rootfs"
+      - "/var/run:/var/run"
+      - "/sys:/sys"
+      - "/var/lib/docker/:/var/lib/docker"
+      - "/dev/disk/:/dev/disk"
+    ports:
+      - "8080:8080"
