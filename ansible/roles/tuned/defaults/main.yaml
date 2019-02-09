@@ -1,0 +1,9 @@
+---
+
+tuned_packages:
+  - tuned
+  - tuned-profiles-atomic
+  - tuned-profiles-compat
+  - tuned-profiles-realtime
+  - tuned-utils
+  - tuned-utils-systemtap

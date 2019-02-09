@@ -17,9 +17,10 @@ galaxy_info:
   # (usually master) will be used.
 
   platforms:
-    - name: EL
+    - name: Fedora
       versions:
-        - 7
+        - 29
+
   galaxy_tags: []
 
 dependencies:

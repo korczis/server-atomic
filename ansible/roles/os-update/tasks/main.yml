@@ -1,0 +1,41 @@
+---
+#
+- name: upgrade atomic host
+  atomic_host:
+    revision: latest
+  register: result
+
+- name: reboot after upgrade of atomic host if needed
+  reboot:
+  when: result.msg.find('No upgrade available') == -1
+
+- name: rebase to {{ atomic_channel }}
+  command: rpm-ostree rebase -b {{ atomic_channel }}
+  register: result
+  ignore_errors: true 
+
+- name: reboot after rebase if needed
+  reboot:
+  when: result.msg.find('systemctl reboot') != -1
+
+# systemctl reboot
+-
+#- name: reboot after rebase to {{ atomic_channel }}
+#  reboot:
+#  register: result
+#  when: result is succeeded
+
+#- name: check if proper ogr formats set up
+#  shell: ogr2ogr --formats | grep $item
+#  with_items:
+#    - PostgreSQL
+#    - FileGDB
+#    - Spatialite
+#  register: ogr_check
+#  # grep will exit with 1 when no results found.
+#  # This causes the task not to halt play.
+#  ignore_errors: true
+#
+#- name: install proper ogr formats
+#  action: DO STUFF
+#  when: ogr_check|failed

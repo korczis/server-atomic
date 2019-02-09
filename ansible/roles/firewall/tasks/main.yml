@@ -1,0 +1,8 @@
+---
+
+- name: ensure firewall service is started and enabled
+  systemd:
+    daemon_reload: true
+    name: firewalld
+    state: restarted
+    enabled: true

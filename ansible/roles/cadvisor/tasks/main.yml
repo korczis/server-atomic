@@ -1,21 +1,46 @@
 ---
 
-- name: install cadvisor
-  docker_container:
+- name: create cadvisor.service
+  template:
+    src: etc/systemd/system/cadvisor.service.j2
+    dest: /etc/systemd/system/cadvisor.service
+    owner: root
+    group: root
+    mode: 0644
+
+#- name: reload systemd daemon
+#  command: "systemctl daemon-reload"
+
+- name: ensure cadvisor service is started and enabled
+  systemd:
+    daemon_reload: true
     name: cadvisor
-    image: google/cadvisor:latest
-    state: started
-    pull: yes
-    detach: true
-    restart: true
-    restart_policy: always
-    privileged: true
-    user: "root:root"
-    volumes:
-      - "/:/rootfs"
-      - "/var/run:/var/run"
-      - "/sys:/sys"
-      - "/var/lib/docker/:/var/lib/docker"
-      - "/dev/disk/:/dev/disk"
-    ports:
-      - "8080:8080"
+    state: restarted
+    enabled: true
+
+- name: open firewall port
+  command: "firewall-cmd --zone=public --add-port=8080/tcp --permanent"
+
+- name: reload firewall rules
+  command: "firewall-cmd --reload"
+
+#- name: install cadvisor
+#  docker_container:
+#    name: cadvisor
+#    image: google/cadvisor:latest
+#    state: started
+#    pull: yes
+#    detach: true
+#    restart: true
+#    restart_policy: always
+#    privileged: true
+#    user: "root:root"
+#    recreate: yes
+#    volumes:
+#      - "/:/rootfs"
+#      - "/var/run:/var/run"
+#      - "/sys:/sys"
+#      - "/var/lib/docker/:/var/lib/docker"
+#      - "/dev/disk/:/dev/disk"
+#    ports:
+#      - "8080:8080"

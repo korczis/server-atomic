@@ -1,0 +1,19 @@
+---
+
+- name: create graphite.service
+  template:
+    src: etc/systemd/system/graphite.service.j2
+    dest: /etc/systemd/system/graphite.service
+    owner: root
+    group: root
+    mode: 0644
+
+- name: install carbonate packages
+  command: "rpm-ostree install --idempotent {{ carbonate_packages | join(' ') }}"
+
+- name: ensure graphite service is started and enabled
+  systemd:
+    daemon_reload: true
+    name: graphite
+    state: restarted
+    enabled: true

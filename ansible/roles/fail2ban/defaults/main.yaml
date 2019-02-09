@@ -1,0 +1,12 @@
+---
+
+fail2ban_packages:
+  # - fail2ban-all        # Install all Fail2Ban packages and dependencies
+  - fail2ban            # Daemon to ban hosts that cause multiple authentication errors
+  # - fail2ban-tests      # Fail2Ban testcases
+  # - fail2ban-mail       # Sendmail actions for Fail2Ban
+  - fail2ban-firewalld  # Firewalld support for Fail2Ban
+  # - fail2ban-shorewall  # Shorewall support for Fail2Ban
+  - fail2ban-server     # Core server component for Fail2Ban
+  - fail2ban-systemd    # Systemd journal configuration for Fail2Ban
+  - fail2ban-hostsdeny  # Hostsdeny (tcp_wrappers) support for Fail2Ban

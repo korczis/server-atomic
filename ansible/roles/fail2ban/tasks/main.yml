@@ -1,0 +1,17 @@
+---
+
+- name: install fail2ban packages
+  command: "rpm-ostree install --idempotent {{ fail2ban_packages | join(' ') }}"
+  register: result
+
+- name: reboot after fail2ban installation
+  reboot:
+  register: result
+  when: result is succeeded
+
+- name: ensure fail2ban service is started and enabled
+  systemd:
+    daemon_reload: true
+    name: fail2ban
+    state: restarted
+    enabled: true

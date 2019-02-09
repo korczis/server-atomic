@@ -17,8 +17,8 @@
 - name: start cockpit
   command: systemctl start cockpit.socket
 
-#- name: open firewall port
-#  command: "firewall-cmd --zone=public --add-port=9090/tcp --permanent"
-#
-#- name: reload firewall rules
-#  command: "firewall-cmd --reload"
+- name: open firewall port
+  command: "firewall-cmd --zone=public --add-port=9090/tcp --permanent"
+
+- name: reload firewall rules
+  command: "firewall-cmd --reload"

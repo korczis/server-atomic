@@ -1,0 +1,27 @@
+[Unit]
+Description=cadvisor
+After=docker.service
+Requires=docker.service
+
+[Service]
+TimeoutStartSec=0
+Restart=unless-stopped
+ExecStartPre=-/usr/bin/docker stop %n
+ExecStartPre=-/usr/bin/docker rm %n
+ExecStartPre=/usr/bin/docker pull google/cadvisor
+ExecStart=/usr/bin/docker run \
+    --name %n \
+    --volume=/:/rootfs \
+    --volume=/var/run:/var/run \
+    --volume=/sys:/sys \
+    --volume=/var/lib/docker/:/var/lib/docker \
+    --volume=/dev/disk/:/dev/disk \
+    --publish=8080:8080 \
+    --restart=no \
+    --privileged \
+    google/cadvisor
+ExecStop=/usr/bin/docker stop -f %n
+ExecStopPost=/usr/bin/docker rm -f %n
+
+[Install]
+WantedBy=multi-user.target

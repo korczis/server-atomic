@@ -1,0 +1,5 @@
+---
+
+- name: install docks - custom docker files
+  command: "echo installing docks"
+  register: result

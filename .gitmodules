@@ -1,3 +1,6 @@
 [submodule "external/atomic-system-containers"]
 	path = external/atomic-system-containers
 	url = https://github.com/korczis/atomic-system-containers
+[submodule "external/atomic-host-tests"]
+	path = external/atomic-host-tests
+	url = git@github.com:projectatomic/atomic-host-tests.git

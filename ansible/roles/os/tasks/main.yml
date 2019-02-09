@@ -3,17 +3,6 @@
 # - name: Print facts
 #  debug: var=ansible_facts
 
-# docker run \
-#  --volume=/:/rootfs:ro \
-#  --volume=/var/run:/var/run:ro \
-#  --volume=/sys:/sys:ro \
-#  --volume=/var/lib/docker/:/var/lib/docker:ro \
-#  --volume=/dev/disk/:/dev/disk:ro \
-#  --publish=8080:8080 \
-#  --detach=true \
-#  --name=cadvisor \
-#  google/cadvisor:latest
-
 # - name: example copying file with owner and permissions
 #  copy:
 #    src: ../../
@@ -35,68 +24,50 @@
 #     var: hostvars[inventory_hostname]
 #   tags: debug_info
 
-- name: lower raid sync priority
-  command: "sysctl -w dev.raid.speed_limit_max=1000"
-
-- name: create /etc/sysctl.conf
-  template:
-    src: etc/sysctl.conf
-    dest: /etc/sysctl.conf
-    owner: root
-    group: root
-    mode: 0644
-
-- name: create /etc/sysctl.d/00-sysctl.conf
-  template:
-    src: etc/sysctl.d/00-sysctl.conf
-    dest: /etc/sysctl.d/00-sysctl.conf
-    owner: root
-    group: root
-    mode: 0644
-
-- name: create /etc/sysctl.d/99-sysctl.conf
-  template:
-    src: etc/sysctl.d/99-sysctl.conf
-    dest: /etc/sysctl.d/99-sysctl.conf
-    owner: root
-    group: root
-    mode: 0644
-
-- name: upgrade atomic host
-  atomic_host:
-    revision: latest
-  register: result
-
-- name: reboot after upgrade of atomic host
-  reboot:
-  register: result
-  when: result is succeeded
-
-- name: rebase to {{ atomic_channel }}
-  command: rpm-ostree rebase -b {{ atomic_channel }}
-  register: result
-  ignore_errors: yes
-
-- name: reboot after rebase to {{ atomic_channel }}
-  reboot:
-  register: result
-  when: result is succeeded
-
-#- name: Add epel repo to host
-#  command: "rpm-ostree install epel-release"
-#  args:
-#    creates: "/etc/yum.repos.d/epel.repo"
+#- name: lower raid sync priority
+#  command: "sysctl -w dev.raid.speed_limit_max=1000"
+#
+#- name: create /etc/sysctl.conf
+#  template:
+#    src: etc/sysctl.conf
+#    dest: /etc/sysctl.conf
+#    owner: root
+#    group: root
+#    mode: 0644
+#
+#- name: create /etc/sysctl.d/00-sysctl.conf
+#  template:
+#    src: etc/sysctl.d/00-sysctl.conf
+#    dest: /etc/sysctl.d/00-sysctl.conf
+#    owner: root
+#    group: root
+#    mode: 0644
+#
+#- name: create /etc/sysctl.d/99-sysctl.conf
+#  template:
+#    src: etc/sysctl.d/99-sysctl.conf
+#    dest: /etc/sysctl.d/99-sysctl.conf
+#    owner: root
+#    group: root
+#    mode: 0644
+#
+#- name: upgrade atomic host
+#  atomic_host:
+#    revision: latest
 #  register: result
-
-#- name: Add centos-release-openshift-origin repo to host
-#  command: "rpm-ostree install centos-release-openshift-origin"
-#  args:
-#    creates: "/etc/yum.repos.d/CentOS-OpenShift-Origin.repo"
+#
+#- name: reboot after upgrade of atomic host
+#  reboot:
 #  register: result
-
-# - name: Reboot after centos-openshift-origin was added
-#   reboot:
-#- name: Install etcd
-#  command: "rpm-ostree install etcd"
+#  when: result is succeeded
+#
+#- name: rebase to {{ atomic_channel }}
+#  command: rpm-ostree rebase -b {{ atomic_channel }}
 #  register: result
 #  ignore_errors: yes
+#
+#- name: reboot after rebase to {{ atomic_channel }}
+#  reboot:
+#  register: result
+#  when: result is succeeded
+
