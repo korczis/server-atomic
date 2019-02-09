@@ -2,7 +2,8 @@
 
 SSH_KEY_PATH=/root/.ssh/id_rsa
 SSH_AUTHORIZED_KEYS_PATH=/root/.ssh/authorized_keys
-SSH_AUTHORIZED_KEYS_URL="https://raw.githubusercontent.com/korczis/server-atomic/master/fs/root/.ssh/authorized_keys"
+# SSH_AUTHORIZED_KEYS_URL="https://raw.githubusercontent.com/korczis/server-atomic/master/fs/root/.ssh/authorized_keys"
+SSH_AUTHORIZED_KEYS_URL="https://github.com/korczis.keys"
 
 # Slow the RAID resync down
 # https://serverfault.com/questions/216508/how-to-interrupt-software-raid-resync
