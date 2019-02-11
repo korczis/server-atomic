@@ -2,12 +2,36 @@
 
 - name: install fail2ban packages
   command: "rpm-ostree install --idempotent {{ fail2ban_packages | join(' ') }}"
-  register: result
+  register: res_install
 
-- name: reboot after fail2ban installation
+- name: create data directory for fail2ban settings
+  file:
+    path: /etc/fail2ban
+    state: directory
+    owner: root
+    group: root
+    mode: 0775
+    recurse: yes
+
+- name: create fail2ban.conf
+  template:
+    src: fail2ban.conf
+    dest: /etc/fail2ban/fail2ban.conf
+    owner: root
+    group: root
+    mode: 0644
+
+- name: create jail.local
+  template:
+    src: jail.local
+    dest: /etc/fail2ban/jail.local
+    owner: root
+    group: root
+    mode: 0644
+
+- name: reboot after fail2ban installation if needed
   reboot:
-  register: result
-  when: result is succeeded
+  when: res_install is changed and res_install.stdout.find('systemctl reboot') != -1
 
 - name: ensure fail2ban service is started and enabled
   systemd:
