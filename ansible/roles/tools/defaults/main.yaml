@@ -1,8 +1,6 @@
 ---
 
 tool_packages:
-  - dnf
-  - git
   - mosh
   - htop
   - mc
