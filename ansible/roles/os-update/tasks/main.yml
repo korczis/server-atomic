@@ -1,5 +1,18 @@
 ---
-#
+
+- name: check current channel
+  command: "rpm-ostree status"
+  register: res_status
+
+- name: rebase to {{ atomic_channel }}
+  command: "rpm-ostree rebase -b {{ atomic_channel }}"
+  register: res_rebase
+  when: res_status.stdout.find(atomic_channel) == -1
+
+- name: reboot after rebase if needed
+  reboot:
+  when: res_rebase is changed and res_rebase.stdout.find('systemctl reboot') != -1
+
 - name: upgrade atomic host
   atomic_host:
     revision: latest
@@ -8,16 +21,3 @@
 - name: reboot after upgrade of atomic host if needed
   reboot:
   when: res_upgrade.msg.find('No upgrade available') == -1
-
-- name: check current channel
-  command: "rpm-ostree status"
-  register: res_status
-
-- name: rebase to {{ atomic_channel }}
-  command: rpm-ostree rebase -b {{ atomic_channel }}
-  register: res_rebase
-  when: res_status.stdout.find(atomic_channel) == -1
-
-- name: reboot after rebase if needed
-  reboot:
-  when: res_rebase is changed and res_rebase.stdout.find('systemctl reboot') != -1
