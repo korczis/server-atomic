@@ -2,10 +2,10 @@
 
 cockpit_packages:
   - cockpit
-  # - cockpit-docker
-  - cockpit-kdump
-  - cockpit-kubernetes
-  - cockpit-machines-ovirt
+  # - cockpit-docker # <-- NOTE: installed by default
+  # - cockpit-kdump # FIXME: install kdump & friends
+  # - cockpit-kubernetes # <-- TODO: install with kubernetes
+  # - cockpit-machines-ovirt # <-- NOTE: not supported on atomic
   - cockpit-selinux
   - cockpit-storaged
-  # - cockpit-system
+  # - cockpit-system # <-- NOTE: installed by default
