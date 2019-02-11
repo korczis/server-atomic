@@ -2,15 +2,11 @@
 
 - name: install tuned packages
   command: "rpm-ostree install --idempotent {{ tuned_packages | join(' ') }}"
-  register: result
+  register: res_install
 
-#- name: reload systemd daemon
-#  command: "systemctl daemon-reload"
-#
-#- name: reboot after tuned packages installation
-#  reboot:
-#  register: result
-#  when: result is succeeded
+- name: reboot after tuned packages installation if needed
+  reboot:
+  when: res_install is changed and res_install.stdout.find('systemctl reboot') != -1
 
 - name: ensure tuned service is started and enabled
   systemd:
