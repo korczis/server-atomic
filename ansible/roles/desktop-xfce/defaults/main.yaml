@@ -1,7 +1,20 @@
 ---
 
 xfce_packages:
+  - Thunar
+  - firewall-config
+  - gtk-xfce-engine
+  - gvfs
+  - gvfs-archive
+  - initial-setup-gui
+  - network-manager-applet
+  - nm-connection-editor
+  - openssh-askpass
   - sddm
+  - thunar-archive-plugin
+  - thunar-media-tags-plugin
+  - thunar-volman
+  - tumbler
   - xfce4-about
   - xfce4-appfinder
   - xfce4-battery-plugin
@@ -38,6 +51,7 @@ xfce_packages:
   - xfwm4
   - xfwm4-theme-nodoka
   - xfwm4-themes
+  - xscreensaver-base
   #
   # -------
   #
@@ -52,7 +66,6 @@ xfce_packages:
   #  - NetworkManager-sstp-gnome
   #  - NetworkManager-strongswan-gnome
   #  - NetworkManager-vpnc-gnome
-  #  - Thunar
   #  - abrt-desktop
   #  - adwaita-gtk2-theme
   #  - adwaita-icon-theme
@@ -67,23 +80,10 @@ xfce_packages:
   #  - bluebird-xfwm4-theme
   #  - desktop-backgrounds-compat
   #  - fedora-icon-theme
-  #  - firewall-config
   #  - fros-recordmydesktop
   #  - greybird-gtk2-theme
   #  - greybird-gtk3-theme
   #  - greybird-xfce4-notifyd-theme
   #  - greybird-xfwm4-theme
-  #  - gtk-xfce-engine
-  #  - gvfs
-  #  - gvfs-archive
-  #  - initial-setup-gui
   #  - lightdm-gtk
-  #  - network-manager-applet
-  #  - nm-connection-editor
-  #  - openssh-askpass
-  #  - thunar-archive-plugin
-  #  - thunar-media-tags-plugin
-  #  - thunar-volman
-  #  - tumbler
   #  - xdg-user-dirs-gtk
-  #  - xscreensaver-base

@@ -1,7 +1,12 @@
 ---
 
-- name: install xfce_packages packages
+- name: install xfce packages
   command: "rpm-ostree install --idempotent {{ xfce_packages | join(' ') }}"
+  register: res_install
 
 - name: set graphical.target as default
   command: "systemctl set-default graphical.target"
+
+- name: reboot after rebase if needed
+  reboot:
+  when: res_install is changed and res_install.stdout.find('systemctl reboot') != -1
