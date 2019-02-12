@@ -1,0 +1,4 @@
+---
+
+docker_registry_path: "/var/lib/docker-registry"
+docker_proxy_url: "https://registry-1.docker.io"

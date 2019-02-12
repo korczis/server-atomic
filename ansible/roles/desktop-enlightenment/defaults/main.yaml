@@ -3,9 +3,9 @@
 enlightenment_packages:
   - enlightenment
   - enlightenment-data
-  - enlightenment-devel
-  - e16-themes
-  - e16-epplets
+  # - enlightenment-devel
+  # - e16-themes
+  # - e16-epplets
   - efl
-  - e16
-  - e16-keyedit
+  # - e16
+  # - e16-keyedit

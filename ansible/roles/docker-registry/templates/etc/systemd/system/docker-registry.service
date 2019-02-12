@@ -1,0 +1,26 @@
+[Unit]
+Description=Docker Registry with Proxy
+After=docker.service
+Requires=docker.service
+
+[Service]
+TimeoutStartSec=0
+TimeoutStopSec=30
+Restart=always
+RestartSec=3
+ExecStartPre=-/usr/bin/docker stop %n
+ExecStartPre=-/usr/bin/docker rm %n
+ExecStartPre=/usr/bin/docker pull registry:2
+ExecStart=/usr/bin/docker run \
+    --name %n \
+    --privileged \
+    --publish 5000:5000 \
+    --volume {{ docker_registry_path }}:/var/lib/registry:Z \
+    registry:2
+ExecStop=/usr/bin/docker stop -t 2 %n
+ExecStopPost=/usr/bin/docker rm -f %n
+Environment=REGISTRY_STORAGE_FILESYSTEM_ROOTDIRECTORY={{ docker_registry_path }}
+Environment=REGISTRY_PROXY_REMOTEURL={{ docker_proxy_url }}
+
+[Install]
+WantedBy=multi-user.target

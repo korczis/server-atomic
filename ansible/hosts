@@ -1,8 +1,9 @@
 [all]
 server
 
-[virtualbox]
-192.168.88.77
+[virtual]
+192.168.88.91
+# 192.168.88.77
 
 [webservers]
 # foo.example.com

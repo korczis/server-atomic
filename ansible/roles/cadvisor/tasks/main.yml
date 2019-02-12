@@ -2,14 +2,11 @@
 
 - name: create cadvisor.service
   template:
-    src: etc/systemd/system/cadvisor.service.j2
+    src: etc/systemd/system/cadvisor.service
     dest: /etc/systemd/system/cadvisor.service
     owner: root
     group: root
     mode: 0644
-
-#- name: reload systemd daemon
-#  command: "systemctl daemon-reload"
 
 - name: ensure cadvisor service is started and enabled
   systemd:
